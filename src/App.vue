@@ -1,9 +1,12 @@
 <template>
   <div id="app">
+    <!-- <div class="title">11</div>
+    <div class="box"></div> -->
+    <!-- <weekCalendar v-model="select"></weekCalendar> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
     <!-- <GooFlow></GooFlow> -->
-    <vue2-org-tree :data="data" :horizontal="true" />
-    <Treeselect :options='data.children' v-model="select" :props="{value: 'id',label: 'deptNamr',children: 'children' }"></Treeselect>
+    <!-- <vue2-org-tree :data="data" :horizontal="true" />-->
+    <Treeselect :options='data.children' v-model="select" multiple :props="{value: 'id',label: 'deptNamr',children: 'children' }"></Treeselect>
   </div>
 </template>
 
@@ -12,13 +15,16 @@
 // import GooFlow from '@/components/GooFlow';
 import Vue2OrgTree from '@/components/OrgTree'
 import Treeselect from '@/components/Treeselect'
+import weekCalendar from '@/components/weekCalendar'
+import { parseTime } from '@/utils'
 export default {
   name: 'App',
   components: {
     // HelloWorld
     // GooFlow
     Vue2OrgTree,
-    Treeselect
+    Treeselect,
+    weekCalendar
   },
   data() {
     return {
@@ -99,6 +105,10 @@ export default {
         ]
       }
     }
+  },
+  created() {
+    // this.select = parseTime(new Date(), '{y}-{m}-{d}')
+    console.log(this.select)
   }
 }
 </script>
@@ -109,8 +119,25 @@ export default {
   background-color: #f0f2f5;
   padding: 15px;
   box-sizing: border-box;
+  /* text-align: center;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  position: relative; */
 }
-
+.title {
+  height: 60px;
+  background: #eee;
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+.box {
+  width: 300px;
+  height: 500px;
+  background: rosybrown;
+  margin: auto;
+}
 .g-container {
   height: 100%;
   width: 100%;
